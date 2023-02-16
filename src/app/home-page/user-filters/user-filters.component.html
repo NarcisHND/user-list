@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="title">Users</h2>
+  <div class="filters-container">
+
+    <form>
+      <div class="user-search-input">
+        <button class="search-btn"><i class="fa fa-search"></i></button>
+        <input [(ngModel)]="enteredSearchValue"
+               (input)="searchUser()"
+               class="search-input" type="text"
+               placeholder="Search for a user" name="search">
+      </div>
+    </form>
+
+    <div class="dropdown">
+      <button class="dropbtn">Location: All <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </button>
+      <div class="dropdown-content">
+        <a class="dropdown-option" appDropdownBehavior (click)="filterDataByCountry('default')">All</a>
+        <a class="dropdown-option" *ngFor="let country of allCountries" appDropdownBehavior
+           (click)="filterDataByCountry(country)">{{country}}</a>
+      </div>
+    </div>
+  </div>
+</div>

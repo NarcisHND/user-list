@@ -1,0 +1,43 @@
+<div class="container">
+  <app-user-filters
+    [allCountries]="getCountries"
+    (selectCountry)="getCountry($event)"
+    [userData]="userData"
+    (sendSearchRes)="getSearchRes($event)"
+  ></app-user-filters>
+
+  <div class="sort-input-container">
+    <h2 class="sort-label">Order by:</h2>
+    <div class="sort-dropdown">
+      <button class="sort-dropBtn">All <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </button>
+      <div class="sort-dropdown-content">
+        <a class="sort-dropdown-option" appSortDropdownBehavior (click)="orderBy( 'all')">All</a>
+        <a class="sort-dropdown-option" appSortDropdownBehavior (click)="orderBy( 'first')">First Name</a>
+        <a class="sort-dropdown-option" appSortDropdownBehavior (click)="orderBy( 'last')">Last Name</a>
+        <a class="sort-dropdown-option" appSortDropdownBehavior (click)="orderBy( 'country')" *ngIf="!filterActive">Country</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="table">
+    <div class="user-data" *ngFor="let user of userData">
+      <div class="img_container">
+        <img class="user-img" alt="{{user.name.first}}" src="{{user.picture.thumbnail}}"
+             (click)="openModal('view-photo', user.picture.large)">
+      </div>
+      <div class="user-desc">
+        <h3 class="username">{{user.name.first}} {{user.name.last}}</h3>
+        <h3 class="user-email">{{user.email}}</h3>
+        <h3 class="user-location">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>{{user.location.country}}, {{user.location.city}}</h3>
+      </div>
+      <div class="card-design"></div>
+    </div>
+  </div>
+</div>
+
+<app-modal id="view-photo">
+  <img class="modal-user-img" alt="user image" src="{{userImg}}">
+  <button class="close-modal-btn" (click)="closeModal('view-photo');">Close</button>
+</app-modal>

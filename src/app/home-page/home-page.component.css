@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-container {
+  box-shadow: 2px 4px 4px 4px #d5d5d5;
+  width: 85vw;
+  border-radius: 8px;
+  background-color: white;
+}
